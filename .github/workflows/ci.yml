@@ -42,13 +42,13 @@ jobs:
         script: ./gradlew connectedAndroidTest
 
     - name: Upload Unit Test Report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: unit-test-report
         path: app/build/reports/tests/testDebugUnitTest/
 
     - name: Upload UI Test Report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ui-test-report
         path: app/build/reports/androidTests/connected/ 
