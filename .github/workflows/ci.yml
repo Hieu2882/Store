@@ -11,41 +11,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-    - name: Build and Run Unit Tests
-      run: ./gradlew build test
+      - name: Build and Run Unit Tests
+        run: ./gradlew build test
 
-    - name: Set up Android SDK
-      uses: android-actions/setup-android@v3
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
 
-    - name: Create AVD and run UI Tests
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: 30
-        target: google_apis
-        arch: x86_64
-        profile: pixel
-        script: ./gradlew connectedAndroidTest
+      - name: Create AVD and run UI Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: pixel
+          script: ./gradlew connectedAndroidTest
 
-    - name: Upload Unit Test Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: unit-test-report
-        path: app/build/reports/tests/testDebugUnitTest/
-
-    - name: Upload UI Test Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: ui-test-report
-        path: app/build/reports/androidTests/connected/ 
+      - name: Upload Unit Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-report
+          path: app/build/reports/tests/testDebugUnitTest/
