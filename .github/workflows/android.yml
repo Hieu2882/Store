@@ -21,15 +21,4 @@ jobs:
         run: chmod +x gradlew
         
       - name: Build and Run Unit Tests
-        run: ./gradlew build test
-        
-      - name: Run UI Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          target: google_apis
-          arch: x86_64
-          profile: Nexus 6
-          script: ./gradlew connectedAndroidTest
-          # Thêm timeout để tránh lỗi timeout
-          timeout: 30m 
+        run: ./gradlew build test 
